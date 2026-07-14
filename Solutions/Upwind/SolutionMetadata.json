@@ -3,16 +3,16 @@
   "offerId": "upwind-catalog-loader",
   "firstPublishDate": "2025-01-01",
   "lastPublishDate": "2026-07-09",
-  "version": "1.1.1",
+  "version": "3.0.3",
   "providers": [
     "Upwind"
   ],
   "categories": {
-    "domain": [
-      "Cloud Security",
+    "domains": [
+      "Security - Cloud Security",
       "IT Operations"
     ],
-    "vertical": []
+    "verticals": []
   },
   "support": {
     "tier": "Partner",
