@@ -47,11 +47,11 @@
     "email": "support@semperis.com",
     "_email": "[variables('email')]",
     "_solutionName": "SemperisLightningCCF",
-    "_solutionVersion": "4.0.0",
+    "_solutionVersion": "4.0.2",
     "solutionId": "semperis.semperis-sentinel-lightning-ccf",
     "_solutionId": "[variables('solutionId')]",
     "workspaceResourceId": "[resourceId('microsoft.OperationalInsights/Workspaces', parameters('workspace'))]",
-    "dataConnectorCCPVersion": "4.0.0",
+    "dataConnectorCCPVersion": "4.0.2",
     "_dataConnectorContentIdConnectorDefinition1": "SemperisLightningCCFConnector",
     "dataConnectorTemplateNameConnectorDefinition1": "[concat(parameters('workspace'),'-dc-',uniquestring(variables('_dataConnectorContentIdConnectorDefinition1')))]",
     "_dataConnectorContentIdConnections1": "SemperisLightningCCFConnectorConnections",
@@ -277,7 +277,10 @@
                                           "text": "Europe (eu)"
                                         }
                                       ],
-                                      "required": true
+                                      "placeholder": "Select a zone",
+                                      "isMultiSelect": false,
+                                      "required": true,
+                                      "defaultAllSelected": false
                                     }
                                   },
                                   {
@@ -1557,7 +1560,10 @@
                                   "text": "Europe (eu)"
                                 }
                               ],
-                              "required": true
+                              "placeholder": "Select a zone",
+                              "isMultiSelect": false,
+                              "required": true,
+                              "defaultAllSelected": false
                             }
                           },
                           {
@@ -1666,7 +1672,7 @@
             },
             "zone": {
               "defaultValue": "zone",
-              "type": "array"
+              "type": "securestring"
             },
             "apiKey": {
               "defaultValue": "apiKey",
@@ -1705,7 +1711,7 @@
               }
             },
             {
-              "name": "[[concat(parameters('workspace'), '/Microsoft.SecurityInsights/SemperisLightningTier0Nodes-', uniqueString(parameters('connectionName'), parameters('zone')[0]))]",
+              "name": "[[concat('parameters('workspace')', '/Microsoft.SecurityInsights/SemperisLightningTier0Nodes-', uniqueString(parameters('connectionName'), parameters('zone')))]",
               "apiVersion": "2023-02-01-preview",
               "type": "Microsoft.OperationalInsights/workspaces/providers/dataConnectors",
               "location": "[parameters('workspace-location')]",
@@ -1720,7 +1726,7 @@
                 "dataType": "LightningTier0NodesV2_CL",
                 "addOnAttributes": {
                   "SemperisInstanceName": "[[parameters('connectionName')]",
-                  "SemperisZone": "[[parameters('zone')[0]]",
+                  "SemperisZone": "[[parameters('zone')]",
                   "SemperisDataStream": "Tier0Nodes"
                 },
                 "auth": {
@@ -1733,7 +1739,7 @@
                     "key": "ccfCompatibility",
                     "value": "1"
                   },
-                  "TokenEndpoint": "[[concat('https://lightning.', parameters('zone')[0], '.cloud.semperis.com/api/external/v1/auth/token')]",
+                  "TokenEndpoint": "[[concat('https://lightning.', parameters('zone'), '.cloud.semperis.com/api/external/v1/auth/token')]",
                   "TokenEndpointHttpMethod": "POST",
                   "Headers": {
                     "Accept": "application/json",
@@ -1745,7 +1751,7 @@
                   "RequestTimeoutInSeconds": 30
                 },
                 "request": {
-                  "apiEndpoint": "[[concat('https://lightning.', parameters('zone')[0], '.cloud.semperis.com/idg/api/v1/QueryGraph')]",
+                  "apiEndpoint": "[[concat('https://lightning.', parameters('zone'), '.cloud.semperis.com/idg/api/v1/QueryGraph')]",
                   "httpMethod": "POST",
                   "queryWindowInMin": 60,
                   "rateLimitQPS": 1,
@@ -1768,7 +1774,7 @@
               }
             },
             {
-              "name": "[[concat(parameters('workspace'), '/Microsoft.SecurityInsights/SemperisLightningAttackPaths-', uniqueString(parameters('connectionName'), parameters('zone')[0]))]",
+              "name": "[[concat('parameters('workspace')', '/Microsoft.SecurityInsights/SemperisLightningAttackPaths-', uniqueString(parameters('connectionName'), parameters('zone')))]",
               "apiVersion": "2023-02-01-preview",
               "type": "Microsoft.OperationalInsights/workspaces/providers/dataConnectors",
               "location": "[parameters('workspace-location')]",
@@ -1783,7 +1789,7 @@
                 "dataType": "LightningAttackPathsV2_CL",
                 "addOnAttributes": {
                   "SemperisInstanceName": "[[parameters('connectionName')]",
-                  "SemperisZone": "[[parameters('zone')[0]]",
+                  "SemperisZone": "[[parameters('zone')]",
                   "SemperisDataStream": "AttackPaths"
                 },
                 "auth": {
@@ -1796,7 +1802,7 @@
                     "key": "ccfCompatibility",
                     "value": "1"
                   },
-                  "TokenEndpoint": "[[concat('https://lightning.', parameters('zone')[0], '.cloud.semperis.com/api/external/v1/auth/token')]",
+                  "TokenEndpoint": "[[concat('https://lightning.', parameters('zone'), '.cloud.semperis.com/api/external/v1/auth/token')]",
                   "TokenEndpointHttpMethod": "POST",
                   "Headers": {
                     "Accept": "application/json",
@@ -1808,7 +1814,7 @@
                   "RequestTimeoutInSeconds": 30
                 },
                 "request": {
-                  "apiEndpoint": "[[concat('https://lightning.', parameters('zone')[0], '.cloud.semperis.com/idg/api/v1/DetermineAttackPaths')]",
+                  "apiEndpoint": "[[concat('https://lightning.', parameters('zone'), '.cloud.semperis.com/idg/api/v1/DetermineAttackPaths')]",
                   "httpMethod": "POST",
                   "queryWindowInMin": 60,
                   "rateLimitQPS": 1,
@@ -1831,7 +1837,7 @@
               }
             },
             {
-              "name": "[[concat(parameters('workspace'), '/Microsoft.SecurityInsights/SemperisLightningAttackPathLinks-', uniqueString(parameters('connectionName'), parameters('zone')[0]))]",
+              "name": "[[concat('parameters('workspace')', '/Microsoft.SecurityInsights/SemperisLightningAttackPathLinks-', uniqueString(parameters('connectionName'), parameters('zone')))]",
               "apiVersion": "2023-02-01-preview",
               "type": "Microsoft.OperationalInsights/workspaces/providers/dataConnectors",
               "location": "[parameters('workspace-location')]",
@@ -1846,7 +1852,7 @@
                 "dataType": "LightningAttackPathLinksV2_CL",
                 "addOnAttributes": {
                   "SemperisInstanceName": "[[parameters('connectionName')]",
-                  "SemperisZone": "[[parameters('zone')[0]]",
+                  "SemperisZone": "[[parameters('zone')]",
                   "SemperisDataStream": "AttackPathLinks"
                 },
                 "auth": {
@@ -1859,7 +1865,7 @@
                     "key": "ccfCompatibility",
                     "value": "1"
                   },
-                  "TokenEndpoint": "[[concat('https://lightning.', parameters('zone')[0], '.cloud.semperis.com/api/external/v1/auth/token')]",
+                  "TokenEndpoint": "[[concat('https://lightning.', parameters('zone'), '.cloud.semperis.com/api/external/v1/auth/token')]",
                   "TokenEndpointHttpMethod": "POST",
                   "Headers": {
                     "Accept": "application/json",
@@ -1871,7 +1877,7 @@
                   "RequestTimeoutInSeconds": 30
                 },
                 "request": {
-                  "apiEndpoint": "[[concat('https://lightning.', parameters('zone')[0], '.cloud.semperis.com/idg/api/v1/DetermineAttackPaths')]",
+                  "apiEndpoint": "[[concat('https://lightning.', parameters('zone'), '.cloud.semperis.com/idg/api/v1/DetermineAttackPaths')]",
                   "httpMethod": "POST",
                   "queryWindowInMin": 60,
                   "rateLimitQPS": 1,
@@ -1894,7 +1900,7 @@
               }
             },
             {
-              "name": "[[concat(parameters('workspace'), '/Microsoft.SecurityInsights/SemperisLightningTier0Attackers-', uniqueString(parameters('connectionName'), parameters('zone')[0]))]",
+              "name": "[[concat('parameters('workspace')', '/Microsoft.SecurityInsights/SemperisLightningTier0Attackers-', uniqueString(parameters('connectionName'), parameters('zone')))]",
               "apiVersion": "2023-02-01-preview",
               "type": "Microsoft.OperationalInsights/workspaces/providers/dataConnectors",
               "location": "[parameters('workspace-location')]",
@@ -1909,7 +1915,7 @@
                 "dataType": "LightningTier0AttackersV2_CL",
                 "addOnAttributes": {
                   "SemperisInstanceName": "[[parameters('connectionName')]",
-                  "SemperisZone": "[[parameters('zone')[0]]",
+                  "SemperisZone": "[[parameters('zone')]",
                   "SemperisDataStream": "Tier0Attackers"
                 },
                 "auth": {
@@ -1922,7 +1928,7 @@
                     "key": "ccfCompatibility",
                     "value": "1"
                   },
-                  "TokenEndpoint": "[[concat('https://lightning.', parameters('zone')[0], '.cloud.semperis.com/api/external/v1/auth/token')]",
+                  "TokenEndpoint": "[[concat('https://lightning.', parameters('zone'), '.cloud.semperis.com/api/external/v1/auth/token')]",
                   "TokenEndpointHttpMethod": "POST",
                   "Headers": {
                     "Accept": "application/json",
@@ -1934,7 +1940,7 @@
                   "RequestTimeoutInSeconds": 30
                 },
                 "request": {
-                  "apiEndpoint": "[[concat('https://lightning.', parameters('zone')[0], '.cloud.semperis.com/idg/api/v1/GetZoneAccessObjects')]",
+                  "apiEndpoint": "[[concat('https://lightning.', parameters('zone'), '.cloud.semperis.com/idg/api/v1/GetZoneAccessObjects')]",
                   "httpMethod": "POST",
                   "queryWindowInMin": 60,
                   "rateLimitQPS": 1,
@@ -1957,7 +1963,7 @@
               }
             },
             {
-              "name": "[[concat(parameters('workspace'), '/Microsoft.SecurityInsights/SemperisLightningIOEsMetadata-', uniqueString(parameters('connectionName'), parameters('zone')[0]))]",
+              "name": "[[concat('parameters('workspace')', '/Microsoft.SecurityInsights/SemperisLightningIOEsMetadata-', uniqueString(parameters('connectionName'), parameters('zone')))]",
               "apiVersion": "2023-02-01-preview",
               "type": "Microsoft.OperationalInsights/workspaces/providers/dataConnectors",
               "location": "[parameters('workspace-location')]",
@@ -1972,7 +1978,7 @@
                 "dataType": "LightningIOEsMetadataV2_CL",
                 "addOnAttributes": {
                   "SemperisInstanceName": "[[parameters('connectionName')]",
-                  "SemperisZone": "[[parameters('zone')[0]]",
+                  "SemperisZone": "[[parameters('zone')]",
                   "SemperisDataStream": "IOEsMetadata"
                 },
                 "auth": {
@@ -1985,7 +1991,7 @@
                     "key": "ccfCompatibility",
                     "value": "1"
                   },
-                  "TokenEndpoint": "[[concat('https://lightning.', parameters('zone')[0], '.cloud.semperis.com/api/external/v1/auth/token')]",
+                  "TokenEndpoint": "[[concat('https://lightning.', parameters('zone'), '.cloud.semperis.com/api/external/v1/auth/token')]",
                   "TokenEndpointHttpMethod": "POST",
                   "Headers": {
                     "Accept": "application/json",
@@ -1997,7 +2003,7 @@
                   "RequestTimeoutInSeconds": 30
                 },
                 "request": {
-                  "apiEndpoint": "[[concat('https://lightning.', parameters('zone')[0], '.cloud.semperis.com/api/external/v1/ioesMetadata')]",
+                  "apiEndpoint": "[[concat('https://lightning.', parameters('zone'), '.cloud.semperis.com/api/external/v1/ioesMetadata')]",
                   "httpMethod": "GET",
                   "queryWindowInMin": 60,
                   "rateLimitQPS": 1,
@@ -2017,7 +2023,7 @@
               }
             },
             {
-              "name": "[[concat(parameters('workspace'), '/Microsoft.SecurityInsights/SemperisLightningIndicatorExecutions-', uniqueString(parameters('connectionName'), parameters('zone')[0]))]",
+              "name": "[[concat('parameters('workspace')', '/Microsoft.SecurityInsights/SemperisLightningIndicatorExecutions-', uniqueString(parameters('connectionName'), parameters('zone')))]",
               "apiVersion": "2023-02-01-preview",
               "type": "Microsoft.OperationalInsights/workspaces/providers/dataConnectors",
               "location": "[parameters('workspace-location')]",
@@ -2032,7 +2038,7 @@
                 "dataType": "LightningIndicatorExecutionsV2_CL",
                 "addOnAttributes": {
                   "SemperisInstanceName": "[[parameters('connectionName')]",
-                  "SemperisZone": "[[parameters('zone')[0]]",
+                  "SemperisZone": "[[parameters('zone')]",
                   "SemperisDataStream": "IndicatorExecutions"
                 },
                 "auth": {
@@ -2045,7 +2051,7 @@
                     "key": "ccfCompatibility",
                     "value": "1"
                   },
-                  "TokenEndpoint": "[[concat('https://lightning.', parameters('zone')[0], '.cloud.semperis.com/api/external/v1/auth/token')]",
+                  "TokenEndpoint": "[[concat('https://lightning.', parameters('zone'), '.cloud.semperis.com/api/external/v1/auth/token')]",
                   "TokenEndpointHttpMethod": "POST",
                   "Headers": {
                     "Accept": "application/json",
@@ -2057,7 +2063,7 @@
                   "RequestTimeoutInSeconds": 30
                 },
                 "request": {
-                  "apiEndpoint": "[[concat('https://lightning.', parameters('zone')[0], '.cloud.semperis.com/api/external/v1/indicatorExecutions')]",
+                  "apiEndpoint": "[[concat('https://lightning.', parameters('zone'), '.cloud.semperis.com/api/external/v1/indicatorExecutions')]",
                   "httpMethod": "GET",
                   "queryWindowInMin": 60,
                   "rateLimitQPS": 1,
@@ -2092,7 +2098,7 @@
       "apiVersion": "2023-04-01-preview",
       "location": "[parameters('workspace-location')]",
       "properties": {
-        "version": "4.0.0",
+        "version": "4.0.2",
         "kind": "Solution",
         "contentSchemaVersion": "3.0.0",
         "displayName": "SemperisLightningCCF",

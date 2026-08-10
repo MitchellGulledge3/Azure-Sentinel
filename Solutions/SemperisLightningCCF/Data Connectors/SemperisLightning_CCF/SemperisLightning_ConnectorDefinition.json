@@ -197,7 +197,10 @@
                               "text": "Europe (eu)"
                             }
                           ],
-                          "required": true
+                          "placeholder": "Select a zone",
+                          "isMultiSelect": false,
+                          "required": true,
+                          "defaultAllSelected": false
                         }
                       },
                       {

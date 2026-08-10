@@ -2,7 +2,7 @@
   "publisherId": "semperis",
   "offerId": "semperis-sentinel-lightning-ccf",
   "firstPublishDate": "2026-07-22",
-  "version": "4.0.0",
+  "version": "4.0.2",
   "providers": [
     "Semperis"
   ],
