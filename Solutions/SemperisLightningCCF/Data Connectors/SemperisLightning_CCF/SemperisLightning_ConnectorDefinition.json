@@ -1,0 +1,226 @@
+{
+  "name": "SemperisLightningCCFConnector",
+  "apiVersion": "2025-07-01-preview",
+  "type": "Microsoft.SecurityInsights/dataConnectorDefinitions",
+  "location": "{{location}}",
+  "kind": "Customizable",
+  "properties": {
+    "connectorUiConfig": {
+      "id": "SemperisLightningCCFConnector",
+      "title": "Semperis Lightning (multi-instance CCF candidate)",
+      "publisher": "Semperis",
+      "descriptionMarkdown": "Candidate CCF connector for Semperis Lightning. One configured instance represents one Semperis zone/API-key pair and deploys one RestApiPoller per supported stream. See the included feasibility report before production use.",
+      "graphQueries": [
+        {
+          "metricName": "LightningTier0Nodes_CL",
+          "legend": "LightningTier0Nodes_CL",
+          "baseQuery": "LightningTier0Nodes_CL"
+        },
+        {
+          "metricName": "LightningAttackPaths_CL",
+          "legend": "LightningAttackPaths_CL",
+          "baseQuery": "LightningAttackPaths_CL"
+        },
+        {
+          "metricName": "LightningAttackPathLinks_CL",
+          "legend": "LightningAttackPathLinks_CL",
+          "baseQuery": "LightningAttackPathLinks_CL"
+        },
+        {
+          "metricName": "LightningTier0Attackers_CL",
+          "legend": "LightningTier0Attackers_CL",
+          "baseQuery": "LightningTier0Attackers_CL"
+        },
+        {
+          "metricName": "LightningIndicatorExecutions_CL",
+          "legend": "LightningIndicatorExecutions_CL",
+          "baseQuery": "LightningIndicatorExecutions_CL"
+        },
+        {
+          "metricName": "LightningIOEsMetadata_CL",
+          "legend": "LightningIOEsMetadata_CL",
+          "baseQuery": "LightningIOEsMetadata_CL"
+        }
+      ],
+      "sampleQueries": [
+        {
+          "description": "Recent LightningTier0Nodes_CL data",
+          "query": "LightningTier0Nodes_CL | take 10"
+        },
+        {
+          "description": "Recent LightningAttackPaths_CL data",
+          "query": "LightningAttackPaths_CL | take 10"
+        },
+        {
+          "description": "Recent LightningAttackPathLinks_CL data",
+          "query": "LightningAttackPathLinks_CL | take 10"
+        },
+        {
+          "description": "Recent LightningTier0Attackers_CL data",
+          "query": "LightningTier0Attackers_CL | take 10"
+        },
+        {
+          "description": "Recent LightningIndicatorExecutions_CL data",
+          "query": "LightningIndicatorExecutions_CL | take 10"
+        },
+        {
+          "description": "Recent LightningIOEsMetadata_CL data",
+          "query": "LightningIOEsMetadata_CL | take 10"
+        }
+      ],
+      "dataTypes": [
+        {
+          "name": "LightningTier0Nodes_CL",
+          "lastDataReceivedQuery": "LightningTier0Nodes_CL | summarize Time=max(TimeGenerated) | where isnotempty(Time)"
+        },
+        {
+          "name": "LightningAttackPaths_CL",
+          "lastDataReceivedQuery": "LightningAttackPaths_CL | summarize Time=max(TimeGenerated) | where isnotempty(Time)"
+        },
+        {
+          "name": "LightningAttackPathLinks_CL",
+          "lastDataReceivedQuery": "LightningAttackPathLinks_CL | summarize Time=max(TimeGenerated) | where isnotempty(Time)"
+        },
+        {
+          "name": "LightningTier0Attackers_CL",
+          "lastDataReceivedQuery": "LightningTier0Attackers_CL | summarize Time=max(TimeGenerated) | where isnotempty(Time)"
+        },
+        {
+          "name": "LightningIndicatorExecutions_CL",
+          "lastDataReceivedQuery": "LightningIndicatorExecutions_CL | summarize Time=max(TimeGenerated) | where isnotempty(Time)"
+        },
+        {
+          "name": "LightningIOEsMetadata_CL",
+          "lastDataReceivedQuery": "LightningIOEsMetadata_CL | summarize Time=max(TimeGenerated) | where isnotempty(Time)"
+        }
+      ],
+      "connectivityCriteria": [
+        {
+          "type": "HasDataConnectors"
+        }
+      ],
+      "availability": {
+        "status": 1,
+        "isPreview": true
+      },
+      "permissions": {
+        "resourceProvider": [
+          {
+            "provider": "Microsoft.OperationalInsights/workspaces",
+            "permissionsDisplayText": "Read and Write permissions are required.",
+            "providerDisplayName": "Workspace",
+            "scope": "Workspace",
+            "requiredPermissions": {
+              "read": true,
+              "write": true,
+              "delete": true,
+              "action": false
+            }
+          }
+        ],
+        "customs": [
+          {
+            "name": "Semperis Lightning API key",
+            "description": "A valid API key and the matching Semperis zone are required. The key is collected as a password field and is not stored in this repository."
+          }
+        ]
+      },
+      "instructionSteps": [
+        {
+          "title": "Manage Semperis Lightning connections",
+          "description": "Add one instance for each Semperis tenant/zone/API-key pair.",
+          "instructions": [
+            {
+              "type": "Markdown",
+              "parameters": {
+                "content": "This candidate uses the CCF multi-instance grid/context-pane pattern. Each instance appears as six poller rows in the grid. IOE execution results are not active because the public connector performs a dynamic second request per execution, which RestApiPoller cannot represent."
+              }
+            },
+            {
+              "type": "DataConnectorsGrid",
+              "parameters": {
+                "mapping": [
+                  {
+                    "columnName": "Connection Name",
+                    "columnValue": "properties.addOnAttributes.SemperisInstanceName"
+                  },
+                  {
+                    "columnName": "Zone",
+                    "columnValue": "properties.addOnAttributes.SemperisZone"
+                  },
+                  {
+                    "columnName": "Data Stream",
+                    "columnValue": "properties.addOnAttributes.SemperisDataStream"
+                  }
+                ],
+                "menuItems": [
+                  "DeleteConnector"
+                ]
+              }
+            },
+            {
+              "type": "ContextPane",
+              "parameters": {
+                "isPrimary": true,
+                "label": "Add new instance",
+                "title": "Add Semperis Lightning instance",
+                "subtitle": "Configure a Semperis tenant connection",
+                "contextPaneType": "DataConnectorsContextPane",
+                "instructionSteps": [
+                  {
+                    "title": "Instance details",
+                    "instructions": [
+                      {
+                        "type": "Textbox",
+                        "parameters": {
+                          "label": "Connection Name",
+                          "placeholder": "Semperis-Production",
+                          "type": "text",
+                          "name": "connectionName",
+                          "validations": {
+                            "required": true
+                          }
+                        }
+                      },
+                      {
+                        "type": "Dropdown",
+                        "parameters": {
+                          "label": "Semperis Zone",
+                          "name": "zone",
+                          "options": [
+                            {
+                              "key": "na",
+                              "text": "North America (na)"
+                            },
+                            {
+                              "key": "eu",
+                              "text": "Europe (eu)"
+                            }
+                          ],
+                          "required": true
+                        }
+                      },
+                      {
+                        "type": "Textbox",
+                        "parameters": {
+                          "label": "Semperis API Key",
+                          "placeholder": "API key",
+                          "type": "password",
+                          "name": "apiKey",
+                          "validations": {
+                            "required": true
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "isConnectivityCriteriasMatchSome": false
+    }
+  }
+}
