@@ -128,3 +128,26 @@ Semperis must confirm the accepted shape before this is real.
 
 `addOnAttributes` is also undocumented on Microsoft Learn. The behaviour above is
 taken from shipped connectors, not from a spec.
+
+Documented `JwtToken` limitations say it requires username/password token
+acquisition and does not support API-key token requests, so the invented
+`ccfCompatibility` field has no documented basis. Two alternatives to raise with
+Semperis, neither applied here:
+
+- `APIKey` auth with `IsApiKeyInPostPayload`, if the polling endpoints accept the
+  API key directly and no JWT exchange is needed.
+- `OAuth2` client credentials, if the token service supports it.
+
+Source: learn.microsoft.com/azure/sentinel/data-connector-connection-rules-reference#authentication-configuration
+
+## Upgrading from 3.1.1
+
+Poller resource names are unchanged (`SemperisLightning<Stream>-<uniqueString>`),
+so installing 4.0.0 over an existing 3.1.1 connection updates those six pollers
+in place and repoints them at the V2 tables. The v1 tables are left behind with
+their existing data; the Function App keeps writing them. Nothing is deleted.
+
+A DCR transform that projects a column the destination table does not declare is
+**silently discarded** — accepted without error, billed, not stored. That is why
+`test_every_transform_output_column_exists_in_its_destination_table` exists.
+Source: learn.microsoft.com/azure/azure-monitor/data-collection/data-collection-transformations-create
