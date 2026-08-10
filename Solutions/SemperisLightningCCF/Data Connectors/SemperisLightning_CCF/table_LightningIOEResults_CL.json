@@ -56,6 +56,11 @@
           "description": "Configured multi-instance connection identifier."
         },
         {
+          "name": "ConnectorName",
+          "type": "string",
+          "description": "Deprecated alias of SemperisInstanceName. Retained for backward compatibility with the previously published schema; Log Analytics/Sentinel reject removing an existing column."
+        },
+        {
           "name": "SemperisZone",
           "type": "string"
         },
