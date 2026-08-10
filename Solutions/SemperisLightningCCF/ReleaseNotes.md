@@ -1,5 +1,6 @@
 | **Version** | **Date Modified (DD-MM-YYYY)** | **Change History** |
 |-------------|--------------------------------|--------------------|
+| 4.0.0       | 10-08-2026                     | **Breaking.** All seven custom tables renamed with a `V2` suffix (`LightningTier0Nodes_CL` to `LightningTier0NodesV2_CL`, and the same for `LightningAttackPaths`, `LightningAttackPathLinks`, `LightningTier0Attackers`, `LightningIndicatorExecutions`, `LightningIOEsMetadata`, `LightningIOEResults`). This guarantees zero overlap with the legacy SemperisLightning Function App solution, which keeps writing to the v1 tables, so both can run side by side in one workspace. Existing queries, workbooks, and rules must be repointed. The redundant `ConnectorName` column was dropped from the new tables; use `SemperisInstanceName`. |
 | 3.1.1       | 22-07-2026                     | Added nested multi-instance attributes for Semperis instance, zone, and data stream to the connector grid and ingested table rows. |
 | 3.1.0       | 22-07-2026                     | Added multi-instance CCF migration candidate with six active pollers, explicit parity limitations, and local mock validation. |
 | 3.0.0 | 22-07-2026 | Baseline source inputs for the Semperis Lightning CCF migration candidate. |

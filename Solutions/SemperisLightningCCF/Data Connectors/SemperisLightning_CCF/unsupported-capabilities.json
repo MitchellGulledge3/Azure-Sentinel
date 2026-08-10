@@ -2,7 +2,7 @@
   "schemaVersion": "1.0",
   "inactiveStreams": [
     {
-      "table": "LightningIOEResults_CL",
+      "table": "LightningIOEResultsV2_CL",
       "reason": "The source function first queries indicatorExecutions, then constructs a unique /indicatorExecutions({executionId})/IndicatorResultObjects URL for every returned execution. RestApiPoller cannot fan out a response into dynamic follow-up endpoints.",
       "stage1RequestModel": {
         "httpMethod": "GET",
@@ -18,14 +18,14 @@
   ],
   "partialStreams": [
     {
-      "table": "LightningAttackPathLinks_CL",
+      "table": "LightningAttackPathLinksV2_CL",
       "missingWithoutApiSupport": [
         "PathId"
       ],
       "reason": "Child links are extracted without their parent attack-path Id."
     },
     {
-      "table": "LightningTier0Attackers_CL",
+      "table": "LightningTier0AttackersV2_CL",
       "missingWithoutApiSupport": [
         "DomainId",
         "DomainName",

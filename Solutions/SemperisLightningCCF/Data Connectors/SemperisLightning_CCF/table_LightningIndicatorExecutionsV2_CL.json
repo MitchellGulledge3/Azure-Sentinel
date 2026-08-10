@@ -1,52 +1,55 @@
 {
-  "name": "LightningTier0Attackers_CL",
+  "name": "LightningIndicatorExecutionsV2_CL",
   "type": "Microsoft.OperationalInsights/workspaces/tables",
   "apiVersion": "2025-07-01",
   "properties": {
     "schema": {
-      "name": "LightningTier0Attackers_CL",
+      "name": "LightningIndicatorExecutionsV2_CL",
       "columns": [
         {
           "name": "TimeGenerated",
           "type": "datetime"
         },
         {
-          "name": "DomainId",
+          "name": "Id",
           "type": "string"
         },
         {
-          "name": "DomainType",
+          "name": "Name",
           "type": "string"
         },
         {
-          "name": "DomainName",
+          "name": "CreatedTime",
+          "type": "datetime"
+        },
+        {
+          "name": "ExecutedTime",
+          "type": "datetime"
+        },
+        {
+          "name": "Status",
           "type": "string"
         },
         {
-          "name": "ObjectId",
+          "name": "IndicatorExecutionId",
           "type": "string"
         },
         {
-          "name": "ObjectType",
+          "name": "IndicatorId",
           "type": "string"
         },
         {
-          "name": "Zone",
-          "type": "string"
+          "name": "StartTime",
+          "type": "datetime"
         },
         {
-          "name": "DistinguishedName",
-          "type": "string"
+          "name": "EndTime",
+          "type": "datetime"
         },
         {
           "name": "SemperisInstanceName",
           "type": "string",
           "description": "Configured multi-instance connection identifier."
-        },
-        {
-          "name": "ConnectorName",
-          "type": "string",
-          "description": "Deprecated alias of SemperisInstanceName. Retained for backward compatibility with the previously published schema; Log Analytics/Sentinel reject removing an existing column."
         },
         {
           "name": "SemperisZone",

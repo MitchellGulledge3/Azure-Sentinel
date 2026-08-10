@@ -8,9 +8,9 @@
     "properties": {
       "connectorDefinitionName": "SemperisLightningCCFConnector",
       "dcrConfig": {
-        "streamName": "Custom-LightningTier0Nodes_CL"
+        "streamName": "Custom-LightningTier0NodesV2_CL"
       },
-      "dataType": "LightningTier0Nodes_CL",
+      "dataType": "LightningTier0NodesV2_CL",
       "addOnAttributes": {
         "SemperisInstanceName": "[[parameters('connectionName')]",
         "SemperisZone": "[[parameters('zone')[0]]",
@@ -69,9 +69,9 @@
     "properties": {
       "connectorDefinitionName": "SemperisLightningCCFConnector",
       "dcrConfig": {
-        "streamName": "Custom-LightningAttackPaths_CL"
+        "streamName": "Custom-LightningAttackPathsV2_CL"
       },
-      "dataType": "LightningAttackPaths_CL",
+      "dataType": "LightningAttackPathsV2_CL",
       "addOnAttributes": {
         "SemperisInstanceName": "[[parameters('connectionName')]",
         "SemperisZone": "[[parameters('zone')[0]]",
@@ -130,9 +130,9 @@
     "properties": {
       "connectorDefinitionName": "SemperisLightningCCFConnector",
       "dcrConfig": {
-        "streamName": "Custom-LightningAttackPathLinks_CL"
+        "streamName": "Custom-LightningAttackPathLinksV2_CL"
       },
-      "dataType": "LightningAttackPathLinks_CL",
+      "dataType": "LightningAttackPathLinksV2_CL",
       "addOnAttributes": {
         "SemperisInstanceName": "[[parameters('connectionName')]",
         "SemperisZone": "[[parameters('zone')[0]]",
@@ -191,9 +191,9 @@
     "properties": {
       "connectorDefinitionName": "SemperisLightningCCFConnector",
       "dcrConfig": {
-        "streamName": "Custom-LightningTier0Attackers_CL"
+        "streamName": "Custom-LightningTier0AttackersV2_CL"
       },
-      "dataType": "LightningTier0Attackers_CL",
+      "dataType": "LightningTier0AttackersV2_CL",
       "addOnAttributes": {
         "SemperisInstanceName": "[[parameters('connectionName')]",
         "SemperisZone": "[[parameters('zone')[0]]",
@@ -252,9 +252,9 @@
     "properties": {
       "connectorDefinitionName": "SemperisLightningCCFConnector",
       "dcrConfig": {
-        "streamName": "Custom-LightningIOEsMetadata_CL"
+        "streamName": "Custom-LightningIOEsMetadataV2_CL"
       },
-      "dataType": "LightningIOEsMetadata_CL",
+      "dataType": "LightningIOEsMetadataV2_CL",
       "addOnAttributes": {
         "SemperisInstanceName": "[[parameters('connectionName')]",
         "SemperisZone": "[[parameters('zone')[0]]",
@@ -310,9 +310,9 @@
     "properties": {
       "connectorDefinitionName": "SemperisLightningCCFConnector",
       "dcrConfig": {
-        "streamName": "Custom-LightningIndicatorExecutions_CL"
+        "streamName": "Custom-LightningIndicatorExecutionsV2_CL"
       },
-      "dataType": "LightningIndicatorExecutions_CL",
+      "dataType": "LightningIndicatorExecutionsV2_CL",
       "addOnAttributes": {
         "SemperisInstanceName": "[[parameters('connectionName')]",
         "SemperisZone": "[[parameters('zone')[0]]",

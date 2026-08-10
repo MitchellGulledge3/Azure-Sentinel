@@ -1,60 +1,43 @@
 {
-  "name": "LightningIndicatorExecutions_CL",
+  "name": "LightningAttackPathLinksV2_CL",
   "type": "Microsoft.OperationalInsights/workspaces/tables",
   "apiVersion": "2025-07-01",
   "properties": {
     "schema": {
-      "name": "LightningIndicatorExecutions_CL",
+      "name": "LightningAttackPathLinksV2_CL",
       "columns": [
         {
           "name": "TimeGenerated",
           "type": "datetime"
         },
         {
-          "name": "Id",
+          "name": "PathId",
           "type": "string"
         },
         {
-          "name": "Name",
+          "name": "LinkId",
           "type": "string"
         },
         {
-          "name": "CreatedTime",
-          "type": "datetime"
-        },
-        {
-          "name": "ExecutedTime",
-          "type": "datetime"
-        },
-        {
-          "name": "Status",
+          "name": "SourceId",
           "type": "string"
         },
         {
-          "name": "IndicatorExecutionId",
+          "name": "TargetId",
           "type": "string"
         },
         {
-          "name": "IndicatorId",
+          "name": "RelationshipType",
           "type": "string"
         },
         {
-          "name": "StartTime",
-          "type": "datetime"
-        },
-        {
-          "name": "EndTime",
-          "type": "datetime"
+          "name": "IdentitySource",
+          "type": "string"
         },
         {
           "name": "SemperisInstanceName",
           "type": "string",
           "description": "Configured multi-instance connection identifier."
-        },
-        {
-          "name": "ConnectorName",
-          "type": "string",
-          "description": "Deprecated alias of SemperisInstanceName. Retained for backward compatibility with the previously published schema; Log Analytics/Sentinel reject removing an existing column."
         },
         {
           "name": "SemperisZone",

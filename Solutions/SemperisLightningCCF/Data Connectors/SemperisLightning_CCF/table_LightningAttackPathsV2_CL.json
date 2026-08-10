@@ -1,88 +1,79 @@
 {
-  "name": "LightningIOEsMetadata_CL",
+  "name": "LightningAttackPathsV2_CL",
   "type": "Microsoft.OperationalInsights/workspaces/tables",
   "apiVersion": "2025-07-01",
   "properties": {
     "schema": {
-      "name": "LightningIOEsMetadata_CL",
+      "name": "LightningAttackPathsV2_CL",
       "columns": [
         {
           "name": "TimeGenerated",
           "type": "datetime"
         },
         {
-          "name": "Id",
+          "name": "PathId",
           "type": "string"
         },
         {
-          "name": "IndicatorId",
+          "name": "TargetId",
           "type": "string"
         },
         {
-          "name": "Name",
+          "name": "TargetLabel",
           "type": "string"
         },
         {
-          "name": "Description",
+          "name": "TargetType",
           "type": "string"
         },
         {
-          "name": "Severity",
+          "name": "TargetDomain",
           "type": "string"
         },
         {
-          "name": "Category",
+          "name": "TargetOID",
           "type": "string"
         },
         {
-          "name": "Weight",
-          "type": "real"
-        },
-        {
-          "name": "Schedule",
+          "name": "SourceId",
           "type": "string"
         },
         {
-          "name": "Version",
+          "name": "SourceLabel",
           "type": "string"
         },
         {
-          "name": "DirectoryTypes",
+          "name": "SourceType",
           "type": "string"
         },
         {
-          "name": "LoC",
+          "name": "SourceDomain",
           "type": "string"
         },
         {
-          "name": "Remediation",
+          "name": "SourceOID",
           "type": "string"
         },
         {
-          "name": "DateAdded",
-          "type": "datetime"
+          "name": "Cost",
+          "type": "int"
         },
         {
-          "name": "Packages",
-          "type": "string"
+          "name": "RiskScore",
+          "type": "int"
         },
         {
-          "name": "SecurityFrameworkTags",
-          "type": "dynamic"
+          "name": "PathLength",
+          "type": "int"
         },
         {
-          "name": "Permissions",
-          "type": "dynamic"
+          "name": "Blowout",
+          "type": "boolean"
         },
         {
           "name": "SemperisInstanceName",
           "type": "string",
           "description": "Configured multi-instance connection identifier."
-        },
-        {
-          "name": "ConnectorName",
-          "type": "string",
-          "description": "Deprecated alias of SemperisInstanceName. Retained for backward compatibility with the previously published schema; Log Analytics/Sentinel reject removing an existing column."
         },
         {
           "name": "SemperisZone",

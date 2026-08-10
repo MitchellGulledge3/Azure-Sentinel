@@ -6,7 +6,7 @@
   "properties": {
     "dataCollectionEndpointId": "[resourceId(parameters('subscription'), parameters('resourceGroupName'), 'Microsoft.Insights/dataCollectionEndpoints', parameters('workspace'))]",
     "streamDeclarations": {
-      "Custom-LightningTier0Nodes_CL": {
+      "Custom-LightningTier0NodesV2_CL": {
         "columns": [
           {
             "name": "id",
@@ -78,7 +78,7 @@
           }
         ]
       },
-      "Custom-LightningAttackPaths_CL": {
+      "Custom-LightningAttackPathsV2_CL": {
         "columns": [
           {
             "name": "Id",
@@ -122,7 +122,7 @@
           }
         ]
       },
-      "Custom-LightningAttackPathLinks_CL": {
+      "Custom-LightningAttackPathLinksV2_CL": {
         "columns": [
           {
             "name": "id",
@@ -162,7 +162,7 @@
           }
         ]
       },
-      "Custom-LightningTier0Attackers_CL": {
+      "Custom-LightningTier0AttackersV2_CL": {
         "columns": [
           {
             "name": "Id",
@@ -206,7 +206,7 @@
           }
         ]
       },
-      "Custom-LightningIndicatorExecutions_CL": {
+      "Custom-LightningIndicatorExecutionsV2_CL": {
         "columns": [
           {
             "name": "Id",
@@ -258,7 +258,7 @@
           }
         ]
       },
-      "Custom-LightningIOEsMetadata_CL": {
+      "Custom-LightningIOEsMetadataV2_CL": {
         "columns": [
           {
             "name": "IndicatorId",
@@ -334,7 +334,7 @@
           }
         ]
       },
-      "Custom-LightningIOEResults_CL": {
+      "Custom-LightningIOEResultsV2_CL": {
         "columns": [
           {
             "name": "IndicatorExecutionId",
@@ -402,73 +402,73 @@
     "dataFlows": [
       {
         "streams": [
-          "Custom-LightningTier0Nodes_CL"
+          "Custom-LightningTier0NodesV2_CL"
         ],
         "destinations": [
           "SemperisWorkspace"
         ],
-        "transformKql": "source | project TimeGenerated=now(), NodeId=tostring(id), NodeType=tostring(type), Label=tostring(label), Domain=tostring(domain), Zone=tostring(zone), IdentitySource=tostring(IDS), DN=tostring(DN), OID=tostring(oid), UserAccountControl=toint(useraccountcontrol), PasswordLastSet=todatetime(passwordlastset), WhenChanged=todatetime(whenchanged), LastLogonTimestamp=todatetime(lastlogontimestamp), IncomingEdgesOfConcern=toint(totalIncomingEdgesOfConcern), UnclassifiedIncomingEdges=toint(unClassifiedIncomingEdgesCount), SemperisInstanceName=tostring(SemperisInstanceName), ConnectorName=tostring(SemperisInstanceName), SemperisZone=tostring(SemperisZone), SemperisDataStream=tostring(SemperisDataStream)",
-        "outputStream": "Custom-LightningTier0Nodes_CL"
+        "transformKql": "source | project TimeGenerated=now(), NodeId=tostring(id), NodeType=tostring(type), Label=tostring(label), Domain=tostring(domain), Zone=tostring(zone), IdentitySource=tostring(IDS), DN=tostring(DN), OID=tostring(oid), UserAccountControl=toint(useraccountcontrol), PasswordLastSet=todatetime(passwordlastset), WhenChanged=todatetime(whenchanged), LastLogonTimestamp=todatetime(lastlogontimestamp), IncomingEdgesOfConcern=toint(totalIncomingEdgesOfConcern), UnclassifiedIncomingEdges=toint(unClassifiedIncomingEdgesCount), SemperisInstanceName=tostring(SemperisInstanceName), SemperisZone=tostring(SemperisZone), SemperisDataStream=tostring(SemperisDataStream)",
+        "outputStream": "Custom-LightningTier0NodesV2_CL"
       },
       {
         "streams": [
-          "Custom-LightningAttackPaths_CL"
+          "Custom-LightningAttackPathsV2_CL"
         ],
         "destinations": [
           "SemperisWorkspace"
         ],
-        "transformKql": "source | project TimeGenerated=now(), PathId=tostring(Id), TargetId=tostring(Target.id), TargetLabel=tostring(Target.label), TargetType=tostring(Target.type), TargetDomain=tostring(Target.domain), TargetOID=tostring(Target.oid), SourceId=tostring(Source.id), SourceLabel=tostring(Source.label), SourceType=tostring(Source.type), SourceDomain=tostring(Source.domain), SourceOID=tostring(Source.oid), Cost=toint(Cost), RiskScore=toint(RiskScore), PathLength=toint(array_length(Path.nodes)), Blowout=tobool(Blowout), SemperisInstanceName=tostring(SemperisInstanceName), ConnectorName=tostring(SemperisInstanceName), SemperisZone=tostring(SemperisZone), SemperisDataStream=tostring(SemperisDataStream)",
-        "outputStream": "Custom-LightningAttackPaths_CL"
+        "transformKql": "source | project TimeGenerated=now(), PathId=tostring(Id), TargetId=tostring(Target.id), TargetLabel=tostring(Target.label), TargetType=tostring(Target.type), TargetDomain=tostring(Target.domain), TargetOID=tostring(Target.oid), SourceId=tostring(Source.id), SourceLabel=tostring(Source.label), SourceType=tostring(Source.type), SourceDomain=tostring(Source.domain), SourceOID=tostring(Source.oid), Cost=toint(Cost), RiskScore=toint(RiskScore), PathLength=toint(array_length(Path.nodes)), Blowout=tobool(Blowout), SemperisInstanceName=tostring(SemperisInstanceName), SemperisZone=tostring(SemperisZone), SemperisDataStream=tostring(SemperisDataStream)",
+        "outputStream": "Custom-LightningAttackPathsV2_CL"
       },
       {
         "streams": [
-          "Custom-LightningAttackPathLinks_CL"
+          "Custom-LightningAttackPathLinksV2_CL"
         ],
         "destinations": [
           "SemperisWorkspace"
         ],
-        "transformKql": "source | project TimeGenerated=now(), PathId=tostring(PathId), LinkId=tostring(id), SourceId=tostring(source), TargetId=tostring(target), RelationshipType=tostring(label), IdentitySource=tostring(IDS), SemperisInstanceName=tostring(SemperisInstanceName), ConnectorName=tostring(SemperisInstanceName), SemperisZone=tostring(SemperisZone), SemperisDataStream=tostring(SemperisDataStream)",
-        "outputStream": "Custom-LightningAttackPathLinks_CL"
+        "transformKql": "source | project TimeGenerated=now(), PathId=tostring(PathId), LinkId=tostring(id), SourceId=tostring(source), TargetId=tostring(target), RelationshipType=tostring(label), IdentitySource=tostring(IDS), SemperisInstanceName=tostring(SemperisInstanceName), SemperisZone=tostring(SemperisZone), SemperisDataStream=tostring(SemperisDataStream)",
+        "outputStream": "Custom-LightningAttackPathLinksV2_CL"
       },
       {
         "streams": [
-          "Custom-LightningTier0Attackers_CL"
+          "Custom-LightningTier0AttackersV2_CL"
         ],
         "destinations": [
           "SemperisWorkspace"
         ],
-        "transformKql": "source | project TimeGenerated=now(), DomainId=tostring(DomainId), DomainType=tostring(DomainType), DomainName=tostring(DomainName), ObjectId=tostring(Id), ObjectType=tostring(Type), Zone=tostring(Zone), DistinguishedName=tostring(DistinguishedName), SemperisInstanceName=tostring(SemperisInstanceName), ConnectorName=tostring(SemperisInstanceName), SemperisZone=tostring(SemperisZone), SemperisDataStream=tostring(SemperisDataStream)",
-        "outputStream": "Custom-LightningTier0Attackers_CL"
+        "transformKql": "source | project TimeGenerated=now(), DomainId=tostring(DomainId), DomainType=tostring(DomainType), DomainName=tostring(DomainName), ObjectId=tostring(Id), ObjectType=tostring(Type), Zone=tostring(Zone), DistinguishedName=tostring(DistinguishedName), SemperisInstanceName=tostring(SemperisInstanceName), SemperisZone=tostring(SemperisZone), SemperisDataStream=tostring(SemperisDataStream)",
+        "outputStream": "Custom-LightningTier0AttackersV2_CL"
       },
       {
         "streams": [
-          "Custom-LightningIndicatorExecutions_CL"
+          "Custom-LightningIndicatorExecutionsV2_CL"
         ],
         "destinations": [
           "SemperisWorkspace"
         ],
-        "transformKql": "source | project TimeGenerated=now(), Id=tostring(Id), Name=tostring(Name), CreatedTime=todatetime(CreatedTime), ExecutedTime=todatetime(ExecutedTime), Status=tostring(Status), IndicatorExecutionId=tostring(IndicatorExecutionId), IndicatorId=tostring(IndicatorId), StartTime=todatetime(StartTime), EndTime=todatetime(EndTime), SemperisInstanceName=tostring(SemperisInstanceName), ConnectorName=tostring(SemperisInstanceName), SemperisZone=tostring(SemperisZone), SemperisDataStream=tostring(SemperisDataStream)",
-        "outputStream": "Custom-LightningIndicatorExecutions_CL"
+        "transformKql": "source | project TimeGenerated=now(), Id=tostring(Id), Name=tostring(Name), CreatedTime=todatetime(CreatedTime), ExecutedTime=todatetime(ExecutedTime), Status=tostring(Status), IndicatorExecutionId=tostring(IndicatorExecutionId), IndicatorId=tostring(IndicatorId), StartTime=todatetime(StartTime), EndTime=todatetime(EndTime), SemperisInstanceName=tostring(SemperisInstanceName), SemperisZone=tostring(SemperisZone), SemperisDataStream=tostring(SemperisDataStream)",
+        "outputStream": "Custom-LightningIndicatorExecutionsV2_CL"
       },
       {
         "streams": [
-          "Custom-LightningIOEsMetadata_CL"
+          "Custom-LightningIOEsMetadataV2_CL"
         ],
         "destinations": [
           "SemperisWorkspace"
         ],
-        "transformKql": "source | project TimeGenerated=now(), Id=tostring(IndicatorId), IndicatorId=tostring(IndicatorId), Name=tostring(Name), Description=tostring(Description), Severity=tostring(Severity), Category=tostring(CategoryName), Weight=toreal(Weight), Schedule=tostring(Schedule), Version=tostring(Version), DirectoryTypes=tostring(DirectoryTypes), LoC=tostring(LoC), Remediation=tostring(Remediation), DateAdded=todatetime(DateAdded), Packages=tostring(Packages), SecurityFrameworkTags=SecurityFrameworkTags, Permissions=Permissions, SemperisInstanceName=tostring(SemperisInstanceName), ConnectorName=tostring(SemperisInstanceName), SemperisZone=tostring(SemperisZone), SemperisDataStream=tostring(SemperisDataStream)",
-        "outputStream": "Custom-LightningIOEsMetadata_CL"
+        "transformKql": "source | project TimeGenerated=now(), Id=tostring(IndicatorId), IndicatorId=tostring(IndicatorId), Name=tostring(Name), Description=tostring(Description), Severity=tostring(Severity), Category=tostring(CategoryName), Weight=toreal(Weight), Schedule=tostring(Schedule), Version=tostring(Version), DirectoryTypes=tostring(DirectoryTypes), LoC=tostring(LoC), Remediation=tostring(Remediation), DateAdded=todatetime(DateAdded), Packages=tostring(Packages), SecurityFrameworkTags=SecurityFrameworkTags, Permissions=Permissions, SemperisInstanceName=tostring(SemperisInstanceName), SemperisZone=tostring(SemperisZone), SemperisDataStream=tostring(SemperisDataStream)",
+        "outputStream": "Custom-LightningIOEsMetadataV2_CL"
       },
       {
         "streams": [
-          "Custom-LightningIOEResults_CL"
+          "Custom-LightningIOEResultsV2_CL"
         ],
         "destinations": [
           "SemperisWorkspace"
         ],
-        "transformKql": "source | project TimeGenerated=now(), IndicatorExecutionId=tostring(IndicatorExecutionId), IndicatorId=tostring(IndicatorId), ExecutionId=tostring(ExecutionId), ObjectId=tostring(ObjectId), ObjectName=tostring(ObjectName), ObjectType=tostring(ObjectType), DistinguishedName=tostring(DistinguishedName), RiskRating=tostring(RiskRating), Status=tostring(Status), ObjectValues=ObjectValues, SemperisInstanceName=tostring(SemperisInstanceName), ConnectorName=tostring(SemperisInstanceName), SemperisZone=tostring(SemperisZone), SemperisDataStream=tostring(SemperisDataStream)",
-        "outputStream": "Custom-LightningIOEResults_CL"
+        "transformKql": "source | project TimeGenerated=now(), IndicatorExecutionId=tostring(IndicatorExecutionId), IndicatorId=tostring(IndicatorId), ExecutionId=tostring(ExecutionId), ObjectId=tostring(ObjectId), ObjectName=tostring(ObjectName), ObjectType=tostring(ObjectType), DistinguishedName=tostring(DistinguishedName), RiskRating=tostring(RiskRating), Status=tostring(Status), ObjectValues=ObjectValues, SemperisInstanceName=tostring(SemperisInstanceName), SemperisZone=tostring(SemperisZone), SemperisDataStream=tostring(SemperisDataStream)",
+        "outputStream": "Custom-LightningIOEResultsV2_CL"
       }
     ]
   }

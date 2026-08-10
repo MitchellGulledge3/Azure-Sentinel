@@ -1,48 +1,59 @@
 {
-  "name": "LightningAttackPathLinks_CL",
+  "name": "LightningIOEResultsV2_CL",
   "type": "Microsoft.OperationalInsights/workspaces/tables",
   "apiVersion": "2025-07-01",
   "properties": {
     "schema": {
-      "name": "LightningAttackPathLinks_CL",
+      "name": "LightningIOEResultsV2_CL",
       "columns": [
         {
           "name": "TimeGenerated",
           "type": "datetime"
         },
         {
-          "name": "PathId",
+          "name": "IndicatorExecutionId",
           "type": "string"
         },
         {
-          "name": "LinkId",
+          "name": "IndicatorId",
           "type": "string"
         },
         {
-          "name": "SourceId",
+          "name": "ExecutionId",
           "type": "string"
         },
         {
-          "name": "TargetId",
+          "name": "ObjectId",
           "type": "string"
         },
         {
-          "name": "RelationshipType",
+          "name": "ObjectName",
           "type": "string"
         },
         {
-          "name": "IdentitySource",
+          "name": "ObjectType",
           "type": "string"
+        },
+        {
+          "name": "DistinguishedName",
+          "type": "string"
+        },
+        {
+          "name": "RiskRating",
+          "type": "string"
+        },
+        {
+          "name": "Status",
+          "type": "string"
+        },
+        {
+          "name": "ObjectValues",
+          "type": "dynamic"
         },
         {
           "name": "SemperisInstanceName",
           "type": "string",
           "description": "Configured multi-instance connection identifier."
-        },
-        {
-          "name": "ConnectorName",
-          "type": "string",
-          "description": "Deprecated alias of SemperisInstanceName. Retained for backward compatibility with the previously published schema; Log Analytics/Sentinel reject removing an existing column."
         },
         {
           "name": "SemperisZone",

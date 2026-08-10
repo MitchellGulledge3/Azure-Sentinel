@@ -1,17 +1,17 @@
 {
-  "name": "LightningIOEResults_CL",
+  "name": "LightningIOEsMetadataV2_CL",
   "type": "Microsoft.OperationalInsights/workspaces/tables",
   "apiVersion": "2025-07-01",
   "properties": {
     "schema": {
-      "name": "LightningIOEResults_CL",
+      "name": "LightningIOEsMetadataV2_CL",
       "columns": [
         {
           "name": "TimeGenerated",
           "type": "datetime"
         },
         {
-          "name": "IndicatorExecutionId",
+          "name": "Id",
           "type": "string"
         },
         {
@@ -19,46 +19,65 @@
           "type": "string"
         },
         {
-          "name": "ExecutionId",
+          "name": "Name",
           "type": "string"
         },
         {
-          "name": "ObjectId",
+          "name": "Description",
           "type": "string"
         },
         {
-          "name": "ObjectName",
+          "name": "Severity",
           "type": "string"
         },
         {
-          "name": "ObjectType",
+          "name": "Category",
           "type": "string"
         },
         {
-          "name": "DistinguishedName",
+          "name": "Weight",
+          "type": "real"
+        },
+        {
+          "name": "Schedule",
           "type": "string"
         },
         {
-          "name": "RiskRating",
+          "name": "Version",
           "type": "string"
         },
         {
-          "name": "Status",
+          "name": "DirectoryTypes",
           "type": "string"
         },
         {
-          "name": "ObjectValues",
+          "name": "LoC",
+          "type": "string"
+        },
+        {
+          "name": "Remediation",
+          "type": "string"
+        },
+        {
+          "name": "DateAdded",
+          "type": "datetime"
+        },
+        {
+          "name": "Packages",
+          "type": "string"
+        },
+        {
+          "name": "SecurityFrameworkTags",
+          "type": "dynamic"
+        },
+        {
+          "name": "Permissions",
           "type": "dynamic"
         },
         {
           "name": "SemperisInstanceName",
           "type": "string",
           "description": "Configured multi-instance connection identifier."
-        },
-        {
-          "name": "ConnectorName",
-          "type": "string",
-          "description": "Deprecated alias of SemperisInstanceName. Retained for backward compatibility with the previously published schema; Log Analytics/Sentinel reject removing an existing column."
         },
         {
           "name": "SemperisZone",
