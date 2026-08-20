@@ -1,8 +1,23 @@
 # Multi-account setup (Semperis Lightning CCF)
 
-**Status: reference only. Do not merge.**
+This solution is an update to the existing Semperis Lightning Content Hub offer
+(`publisherId` `semperis` / `offerId` `azure-sentinel-solution-semperislightning`).
+It ships two connectors side by side, same pattern as Netskope and SailPoint:
 
-One workspace. Many Semperis tenants. Each row must say which tenant it came from.
+| Connector | Tables |
+|---|---|
+| Azure Functions (legacy) | `*_CL` |
+| Codeless Connector Framework | `*V2_CL` |
+
+Use one or both. CCF writes dedicated V2 tables so it can run next to the Function
+App with no schema overlap.
+
+One workspace. Many Semperis tenants. Each CCF row must say which tenant it came from.
+
+The CCF zone control is a single-select `Dropdown`. The portal posts that value as
+an array (for example `["na"]`). Declare `zone` as `type: array` and read
+`parameters('zone')[0]` in poller names, `addOnAttributes.SemperisZone`, and API
+host URLs.
 
 ## The mechanism
 
@@ -119,12 +134,11 @@ LightningAttackPathsV2_CL
 | where SemperisInstanceName == "contoso-prod"
 ```
 
-## Open
+## Auth
 
-Auth is unresolved. See `docs/call-brief-2026-08-10.md`. The token endpoint takes a
-single `apiKey` field. CCF `JwtToken` models a `userName`/`password` pair. The
-current config pads with `ccfCompatibility`, which is invented and unverified.
-Semperis must confirm the accepted shape before this is real.
+Portal **Connect** for the merged 4.1.0 package succeeded using the current
+`JwtToken` config (`apiKey` plus a `ccfCompatibility` pad). Ingestion against a
+live Semperis token endpoint should still be confirmed after Connect.
 
 `addOnAttributes` is also undocumented on Microsoft Learn. The behaviour above is
 taken from shipped connectors, not from a spec.
